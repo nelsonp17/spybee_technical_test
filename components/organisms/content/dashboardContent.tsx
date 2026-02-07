@@ -66,7 +66,6 @@ const DashboardContent = ({ data }: { data: ProjectData[] }) => {
         </section>
 
         {/* Sección del Resumen / Lateral */}
-        {/* En móviles es un overlay, en LG es parte del layout flex */}
         <aside
           className={`
             fixed inset-y-0 right-0 z-50 w-full sm:w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out

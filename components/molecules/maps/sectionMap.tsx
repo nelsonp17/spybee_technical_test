@@ -1,3 +1,12 @@
+/*
+ Para configurar el mapa me basé en la documentación oficial de Mapbox GL JS y
+ adapté el código para que funcione en mi aplicación.
+ referencias:
+ https://docs.mapbox.com/mapbox-gl-js/example/simple-map/
+ https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/
+ https://docs.mapbox.com/mapbox-gl-js/example/center-on-feature/
+*/
+
 import { useMap } from "@/hooks/useMap";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRef } from "react";
