@@ -11,7 +11,7 @@ const ProgressCard = ({ label, total, open }: ProgressCardProps) => {
     <div className="bg-gray-50 p-2 rounded-lg border border-gray-50 flex flex-col">
       <span className="font-bold">{label}</span>
       <span className="text-3xl font-bold text-gray-800">{total}</span>
-      <span className="text-[var(--color-dark-grey-2)] mb-2">
+      <span className="text-gray-800 mb-2">
         Total Abiertas
       </span>
 

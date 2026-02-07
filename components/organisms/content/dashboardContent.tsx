@@ -15,20 +15,15 @@ import { useProjectStore } from "@/store/projectStore";
 const DashboardContent = ({ data }: { data: ProjectData[] }) => {
   const { view } = useViewStore();
   const [openSummary, setOpenSummary] = useState(false);
-
   const { setProjects, allProjects } = useProjectStore();
-
   const { success, error } = useToast();
 
   useEffect(() => {
-    // 1. Verificación básica
     if (!data || data.length === 0) {
       error("La data no está disponible");
       return;
     }
 
-    // 2. Solo sincronizamos si hay una diferencia real
-    // Comparamos el primer ID o el length para evitar el bucle infinito
     const isDifferent =
       allProjects.length !== data.length ||
       (allProjects.length > 0 && allProjects[0]._id !== data[0]._id);
@@ -36,60 +31,91 @@ const DashboardContent = ({ data }: { data: ProjectData[] }) => {
     if (isDifferent) {
       setProjects(data);
       success("Los datos han sido cargados exitosamente");
-      console.log("Data sincronizada");
     }
   }, [data, setProjects, allProjects, success, error]);
 
   return (
     <>
-      {/* container del toast de React-hot-toast */}
       <Toaster />
 
-      <div className="flex flex-col lg:flex-row min-h-screen gap-4 p-4">
+      <div className="flex flex-col lg:flex-row min-h-screen gap-4 p-2 sm:p-4 bg-gray-50 relative overflow-hidden">
         {/* Sección de la Tabla */}
         <section
-          className={`transition-all duration-300 ease-in-out ${
-            openSummary ? "w-full lg:w-8/12" : "w-full lg:w-[98%]"
+          className={`transition-all duration-500 ease-in-out w-full ${
+            openSummary ? "lg:w-8/12" : "lg:w-[97%]"
           }`}
         >
           <AnimatePresence mode="wait">
             {view === "map" && (
               <motion.div
                 key="map-view"
-                initial={{ opacity: 0, y: 20 }} // Estado inicial
-                animate={{ opacity: 1, y: 0 }} // Estado al aparecer
-                exit={{ opacity: 0, y: -20 }} // Estado al desaparecer
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 288 }} // h-72
+                exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="mb-8 w-full h-72 border border-yellow-950 bg-white"
+                className="mb-4 w-full border border-gray-200 bg-white rounded-lg shadow-sm overflow-hidden"
               >
-                <div className="py-14 text-center">MAP</div>
+                <div className="flex items-center justify-center h-full text-gray-400 font-medium">
+                  MAPA INTERACTIVO
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
 
+          {/* Pasamos el estado para que la tabla ajuste sus columnas internamente */}
           <TableProject openSummary={openSummary} />
         </section>
 
         {/* Sección del Resumen / Lateral */}
-        <section
-          className={`transition-all duration-300 ease-in-out flex flex-col items-center ${
-            openSummary ? "w-full lg:w-4/12" : "w-full lg:w-[2%]"
-          }`}
+        {/* En móviles es un overlay, en LG es parte del layout flex */}
+        <aside
+          className={`
+            fixed inset-y-0 right-0 z-50 w-full sm:w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
+            lg:relative lg:inset-auto lg:shadow-none lg:bg-transparent lg:translate-x-0
+            ${openSummary ? "translate-x-0 lg:w-4/12" : "translate-x-full lg:w-[3%] lg:translate-x-0"}
+          `}
         >
           {openSummary ? (
-            <div className="w-full">
-              {/* Botón opcional para cerrar el summary si quieres que sea reversible */}
+            <div className="h-full lg:h-auto overflow-y-auto">
               <Summary onCloseSummary={() => setOpenSummary(false)} />
             </div>
           ) : (
-            <ButtonFilter
-              onClick={() => setOpenSummary(true)}
-              className="rounded-full shadow-md bg-white border border-gray-200 lg:mt-4"
-            >
-              <ChevronLeft size={20} />
-            </ButtonFilter>
+            <div className="hidden lg:flex flex-col items-center pt-4">
+              <ButtonFilter
+                onClick={() => setOpenSummary(true)}
+                className="rounded-full shadow-md bg-white border border-gray-200 hover:bg-gray-50 transition-all group"
+              >
+                <ChevronLeft
+                  size={20}
+                  className="group-hover:scale-110 transition-transform"
+                />
+              </ButtonFilter>
+            </div>
           )}
-        </section>
+        </aside>
+
+        {/* Overlay para móviles cuando el Summary está abierto */}
+        <AnimatePresence>
+          {openSummary && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpenSummary(false)}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
+            />
+          )}
+        </AnimatePresence>
+
+        {/* Botón flotante para abrir Summary en móviles */}
+        {!openSummary && (
+          <button
+            onClick={() => setOpenSummary(true)}
+            className="lg:hidden fixed bottom-6 right-6 z-30 p-4 bg-yellow-500 rounded-full shadow-xl active:scale-95 transition-transform"
+          >
+            <ChevronLeft size={24} />
+          </button>
+        )}
       </div>
     </>
   );

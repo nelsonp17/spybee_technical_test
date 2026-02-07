@@ -48,16 +48,6 @@ const Tag = ({ children, className = "", color }: TagProps) => {
       break;
   }
 
-  // else if (color === "warning") {
-  //   bgColor = "bg-[var(--color-dark-yellow)] text-[var(--color-dark-grey)]";
-  // } else if (color === "error") {
-  //   bgColor = "bg-[var(--color-light-red)] text-white";
-  // } else if (color === "secondary") {
-  //   bgColor = "bg-[var(--color-dark-grey-2)] text-white";
-  // } else if (color === "blue") {
-  //   bgColor = "bg-[var(--color-light-blue)] text-[var(--color-dark-grey)]";
-  // }
-  //
   return (
     <span className={`${className} ${bgColor} px-4 py-1 rounded-full text-xs`}>
       {children}

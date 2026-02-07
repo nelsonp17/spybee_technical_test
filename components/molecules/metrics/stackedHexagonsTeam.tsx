@@ -22,7 +22,7 @@ const StackedHexagonsTeam = ({ users, limit = 3 }: Props) => {
         backgroundColor: `var(--color-light-yellow-${colorIndex})`,
         color: colorIndex > 7 ? "white" : "inherit",
       },
-      className: "w-7 h-7 font-bold text-[10px] mr-1",
+      className: "w-6 h-7 font-bold text-[10px] mr-1",
     };
   };
 
@@ -41,8 +41,8 @@ const StackedHexagonsTeam = ({ users, limit = 3 }: Props) => {
       {/* Hexágono de "+X" */}
       {hasMore && (
         <Hexagon
-          className="w-7 h-7 font-bold text-[10px] mr-1"
-          style={{ backgroundColor: "var(--color-light-yellow-2)" }}
+          className="w-6 h-7 font-bold text-[10px] mr-1"
+          style={{ backgroundColor: "var(--color-light-yellow-5)" }}
         >
           {remainingCount}+
         </Hexagon>

@@ -24,10 +24,11 @@ interface SummaryProps {
 }
 
 const Summary = ({ onCloseSummary }: SummaryProps) => {
-  const { pageProjects: data } = useProjectStore();
-  const metrics = useMetrics(data);
-  const upcomingDeadlines = useUpcomingDeadlines(data, 3);
-  const upcomingEvents = useUpcomingEvents(data, 3);
+  // No estoy seguro de que el summary sea por todos los proyectos (allProjects) o solo de la página actual (pageProjects)
+  const { allProjects } = useProjectStore();
+  const metrics = useMetrics(allProjects);
+  const upcomingDeadlines = useUpcomingDeadlines(allProjects, 3);
+  const upcomingEvents = useUpcomingEvents(allProjects, 3);
 
   // proyectos
   const templateUpcoming = [
@@ -36,7 +37,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
       render: (row: ProjectDataType) => (
         <>
           <span className="font-bold text-gray-800">{row.name}</span>
-          <span className="text-[var(--color-dark-grey-2)] truncate">
+          <span className="text-gray-500 truncate">
             {row.desc}
           </span>
         </>
@@ -45,13 +46,13 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
     {
       header: "Item",
       render: (row: ProjectDataType) => (
-        <span className="text-[var(--color-dark-grey-2)]">{row.item}</span>
+        <span className="text-gray-500">{row.item}</span>
       ),
     },
     {
       header: "Fecha Límite",
       render: (row: ProjectDataType) => (
-        <div className="flex flex-col text-[var(--color-dark-grey-2)] font-medium">
+        <div className="flex flex-col text-gray-500 font-medium">
           <span>{row.date}</span>
           <div className="flex items-center text-left">
             <Clock size={14} className="mr-1" />
@@ -69,7 +70,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
       render: (row: ProjectDataType) => (
         <>
           <span className="font-bold text-gray-800">{row.name}</span>
-          <span className="text-[var(--color-dark-grey-2)] truncate">
+          <span className="text-gray-500 truncate">
             {row.desc}
           </span>
         </>
@@ -90,7 +91,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
     {
       header: "Fecha Límite",
       render: (row: ProjectDataType) => (
-        <div className="flex flex-col text-[var(--color-dark-grey-2)] font-medium">
+        <div className="flex flex-col text-gray-500 font-medium">
           <span>{row.date}</span>
           <div className="flex items-center text-left">
             <Clock size={14} className="mr-1" />
@@ -112,7 +113,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
         <button className="p-1 rounded-full border border-gray-200 hover:bg-gray-50">
           <ChevronRight
             size={18}
-            className="text-[var(--color-dark-grey-2)]"
+            className="text-gray-500"
             onClick={onCloseSummary}
           />
         </button>
@@ -120,10 +121,10 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
 
       {/* Tabs */}
       <div className="flex border-b border-gray-100 text-sm">
-        <button className="px-4 py-2 text-[var(--color-dark-grey-2)] hover:text-gray-600 border-b-2 border-[var(--color-dark-yellow)] font-medium">
+        <button className="px-4 py-2 text-gray-500 hover:text-gray-600 border-b-2 border-yellow-400 font-medium">
           General
         </button>
-        <button className="px-4 py-2 text-[var(--color-dark-grey-2)] hover:text-gray-600">
+        <button className="px-4 py-2 text-gray-500 hover:text-gray-600">
           Mis actualizaciones
         </button>
         <button className="ml-auto px-4 py-2 flex items-center gap-1 font-bold">

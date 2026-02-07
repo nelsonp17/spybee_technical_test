@@ -21,8 +21,7 @@ const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const isPrimary =
-    "bg-[var(--color-dark-yellow)] hover:bg-yellow-500 text-[var(--color-dark-letter-1)] ";
+  const isPrimary = "bg-yellow-500 hover:bg-yellow-400 text-gray-800 ";
   const isSecondary = "";
   const baseClassName =
     "font-bold py-2 px-6 rounded-md flex items-center gap-2 transition-colors";

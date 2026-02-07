@@ -43,7 +43,7 @@ const UserMenu = ({ name, role }: UserMenuProps) => {
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity focus:outline-none"
       >
-        <Hexagon className="w-9 h-10 bg-[var(--color-dark-yellow)] text-[var(--color-dark-grey)]">
+        <Hexagon className="w-9 h-10 bg-yellow-400 text-[var(--color-dark-grey)]">
           <User size={20} strokeWidth={2.5} />
         </Hexagon>
 
