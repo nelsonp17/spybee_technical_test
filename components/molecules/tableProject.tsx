@@ -6,9 +6,11 @@ import ProjectIncidents from "./metrics/incidents";
 import StackedHexagonsTeam from "./metrics/stackedHexagonsTeam";
 import { getProjectPlan, getProjectStatus } from "@/utils/projectUtils";
 import Pagination from "./pagination";
+import { useSelectionStore } from "@/store/selectionStore";
 
 const TableProject = ({ openSummary }: { openSummary: boolean }) => {
   const { pageProjects: data } = useProjectStore();
+  const { selectedProjectIds, toggleSelection } = useSelectionStore();
   const errorImage = "https://cdn-icons-png.flaticon.com/512/9672/9672290.png";
 
   return (
@@ -30,10 +32,17 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
             {data.map((item) => {
               const plan = getProjectPlan(item.projectPlanData.plan);
               const status = getProjectStatus(item.status);
+              const isSelected = selectedProjectIds.includes(item._id);
+
               return (
                 <tr
                   key={item._id}
-                  className="hover:bg-gray-50 cursor-pointer transition-colors group border-l-3 border-b-0 border-transparent hover:border-orange-500"
+                  onClick={() => toggleSelection(item._id)}
+                  className={`hover:bg-gray-200 cursor-pointer transition-colors group border-l-3 border-b-0 ${
+                    isSelected
+                      ? "border-orange-500 bg-orange-50/30"
+                      : "border-transparent"
+                  }`}
                 >
                   {/* Info Proyecto */}
                   <td className="px-3 py-4">
@@ -58,7 +67,13 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
                           <span className="font-bold text-[var(--color-dark-letter-1)] truncate">
                             {item.title}
                           </span>
-                          <Cloud size={14} className="text-blue-400 shrink-0" />
+                          {/* No se en que se basa para mostrar el icono de nubes asi que usara el mismo estado del isSelected */}
+                          {isSelected && (
+                            <Cloud
+                              size={14}
+                              className="text-blue-400 shrink-0"
+                            />
+                          )}
                         </div>
                         <div className="text-[10px] text-gray-400 flex items-center gap-2 whitespace-nowrap">
                           <div className="flex items-center gap-1">
