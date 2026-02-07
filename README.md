@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prueba técnica Spybee
+## Autor: nelson portillo
 
-## Getting Started
+## Instalación y ejecución
 
-First, run the development server:
+1. Clonar el repositorio.
+2. Instalar dependencias: `npm install` o `yarn install`.
+3. Configurar variables de entorno (tomar como referencia el archivo `.env.example`).
+4. Correr en desarrollo: `npm run dev`
+5. Correr en producción: `npm run build` y `npm start`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Descripción
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Esta prueba técnica es una evaluación de habilidades técnicas de frontend. El objetivo es evaluar la capacidad del candidato para diseñar, implementar y probar soluciones a problemas específicos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Objetivos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Diseñar y desarrollar una aplicación web utilizando en nextjs apartir de un mockup.
+- Implementar funcionalidades interactivas y responsivas.
+- Aplicar mapbox gl js para mostrar mapas interactivos.
+- Utilización de data en formato JSON para mostrar información en la aplicación.
 
-## Learn More
+## Tecnologías utilizadas
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- React.js
+- Mapbox GL JS
+- JSON
+- CSS modules
+- Tailwind CSS
+- TypeScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Referencias
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Mapbox GL JS](https://docs.mapbox.com/)
+- [Custom Markers](https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/)
+- [Simple Map](https://docs.mapbox.com/mapbox-gl-js/example/simple-map/)
+- [Center feature](https://docs.mapbox.com/mapbox-gl-js/example/center-on-feature/)
+- [Tutorial de Mapbox GL JS + React](https://dev.to/franklin030601/mostrando-mapa-de-mapbox-con-react-82k)
 
-## Deploy on Vercel
+Originalmente habia hecho el sistema con marcadores de mapbox-gl pero vi que no era lo que buscaba según el mockup, consultado la documentación oficial de mapbox-gl encontre que el sistema de puntos pero dejo el codigo funcional para crear marcadores comentado
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Puntos importantes
+### Consulta de datos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+La data proviene de un json ubicado en `data/mock_data.json` y cree una ruta API para consultarla. Deje el cliente de frontend y el backend, para consultarla uso fetch y axios, debo mencionar que en una aplicación nextjs se recomienda importar el archivo route.ts del lado del servidor, pero no lo hice para que simular como seria consultar una api externa a nextjs y agregue `export const dynamic = "force-dynamic";` en `dashboard/page.tsx`
+
+## Carga de imagenes
+
+Para cargar las imagenes de la data json utilice la etiqueta `<img />` en vez de `<Image />` de nextjs porque encontre rutas de imagenes no válidas, aunque pude agregar una validación http preferi no hacerlo para evitar tener que hacer un SafeImage, useEffect u otras practicas que podrian hacer lenta la carga del componente, además al ser una data json no tengo control de los origenes de las imagenes para autorizar los dominios en el archivo de configuración y evitar usar Comodín para permitir cualquier dominio lo cual anula la seguridad de nextjs por otro lado evitor usar Proxy de Imágenes que puede generar latencia por la descarga inicial sumada al procesamiento de optimización (si usas Next.js para redimensionar) añade milisegundos perceptibles.
+
+
+## Estructura de carpetas
+
+La aplicación sigue la metodología de **Atomic Design** para garantizar componentes reutilizables, escalables y fáciles de mantener:
+
+- **Atoms**: Componentes básicos e indivisibles (botones, inputs, hexágonos).
+- **Molecules**: Combinaciones de átomos que forman unidades funcionales (filas de tabla, buscadores, grupos de filtros).
+- **Organisms**: Secciones complejas de la interfaz compuestas por moléculas y átomos (DashboardContent, Summary).
+
+Además, se implementó una separación de responsabilidades clara:
+- **Hooks**: Lógica extraída para el manejo de Mapbox y estadísticas.
+- **Services/HTTP**: Capas de abstracción para el consumo de datos tanto en el cliente como en el servidor.
+- **Store**: Gestión de estado global (proyectos, selecciones y vistas).
+- **Utils**: Funciones de ayuda específicas para la lógica del tiempo y la inicialización de mapas.

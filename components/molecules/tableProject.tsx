@@ -5,7 +5,7 @@ import { formatDate } from "@/utils/time";
 import ProjectIncidents from "./metrics/incidents";
 import StackedHexagonsTeam from "./metrics/stackedHexagonsTeam";
 import { getProjectPlan, getProjectStatus } from "@/utils/projectUtils";
-import Pagination from "./pagination";
+import PaginationTable from "./paginationTable";
 import { useSelectionStore } from "@/store/selectionStore";
 
 const TableProject = ({ openSummary }: { openSummary: boolean }) => {
@@ -123,7 +123,7 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
       </div>
 
       <div className="mt-auto">
-        <Pagination />
+        <PaginationTable />
       </div>
     </div>
   );

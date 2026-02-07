@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import DashboardContent from "@/components/organisms/content/dashboardContent";
 import HeaderSection from "@/components/molecules/header/headerSection";
 import { Suspense } from "react";

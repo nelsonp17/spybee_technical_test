@@ -6,7 +6,7 @@ import {
   ChevronsRight,
 } from "lucide-react";
 
-const Pagination = () => {
+const PaginationTable = () => {
   const {
     currentPage,
     getTotalPages,
@@ -81,4 +81,4 @@ const Pagination = () => {
   );
 };
 
-export default Pagination;
+export default PaginationTable;
