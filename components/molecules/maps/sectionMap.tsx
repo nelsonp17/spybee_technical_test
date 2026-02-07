@@ -5,6 +5,9 @@
  https://docs.mapbox.com/mapbox-gl-js/example/simple-map/
  https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/
  https://docs.mapbox.com/mapbox-gl-js/example/center-on-feature/
+
+ otras como:
+ https://dev.to/franklin030601/mostrando-mapa-de-mapbox-con-react-82k
 */
 
 import { useMap } from "@/hooks/useMap";
