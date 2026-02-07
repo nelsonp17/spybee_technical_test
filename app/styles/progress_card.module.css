@@ -1,0 +1,26 @@
+/* Gráfico circular simple con CSS */
+.progressRing {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* El porcentaje se puede pasar por variable inline --p */
+    background: conic-gradient(
+        var(--color-light-red) calc(var(--p) * 1%),
+        var(--color-darñ-grey-3) 0
+    );
+}
+
+.progressRingInner {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}

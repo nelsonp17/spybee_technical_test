@@ -1,0 +1,53 @@
+import Hexagon from "@/components/atoms/hexagon";
+import { useUserInitials } from "@/hooks/useProjectStats";
+import { User } from "@/types/project";
+
+interface Props {
+  users: User[];
+  limit?: number;
+}
+
+const StackedHexagonsTeam = ({ users, limit = 3 }: Props) => {
+  const { visibleUsers, remainingCount, hasMore } = useUserInitials(
+    users,
+    limit,
+  );
+
+  const getHexagonStyle = (index: number) => {
+    const colorIndex = Math.min(index + 1, 10);
+
+    // Retornamos un objeto de estilos y clases separadas
+    return {
+      style: {
+        backgroundColor: `var(--color-light-yellow-${colorIndex})`,
+        color: colorIndex > 7 ? "white" : "inherit",
+      },
+      className: "w-7 h-7 font-bold text-[10px] mr-1",
+    };
+  };
+
+  return (
+    <div className="flex -space-x-2">
+      {/* Hexágonos de iniciales */}
+      {visibleUsers.map((initials, index) => {
+        const { style, className } = getHexagonStyle(index);
+        return (
+          <Hexagon key={index} style={style} className={className}>
+            {initials}
+          </Hexagon>
+        );
+      })}
+
+      {/* Hexágono de "+X" */}
+      {hasMore && (
+        <Hexagon
+          className="w-7 h-7 font-bold text-[10px] mr-1"
+          style={{ backgroundColor: "var(--color-light-yellow-2)" }}
+        >
+          {remainingCount}+
+        </Hexagon>
+      )}
+    </div>
+  );
+};
+export default StackedHexagonsTeam;
