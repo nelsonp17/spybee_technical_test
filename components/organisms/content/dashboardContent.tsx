@@ -11,6 +11,7 @@ import { ProjectData } from "@/types/project";
 import { Toaster } from "react-hot-toast";
 import { useToast } from "@/hooks/useToast";
 import { useProjectStore } from "@/store/projectStore";
+import SectionMap from "@/components/molecules/maps/sectionMap";
 
 const DashboardContent = ({ data }: { data: ProjectData[] }) => {
   const { view } = useViewStore();
@@ -38,7 +39,7 @@ const DashboardContent = ({ data }: { data: ProjectData[] }) => {
     <>
       <Toaster />
 
-      <div className="flex flex-col lg:flex-row min-h-screen gap-4 p-2 sm:p-4 bg-gray-50 relative overflow-hidden">
+      <div className="flex flex-col lg:flex-row min-h-screen gap-4 p-2 sm:p-4 relative overflow-hidden">
         {/* Sección de la Tabla */}
         <section
           className={`transition-all duration-500 ease-in-out w-full ${
@@ -55,9 +56,7 @@ const DashboardContent = ({ data }: { data: ProjectData[] }) => {
                 transition={{ duration: 0.3 }}
                 className="mb-4 w-full border border-gray-200 bg-white rounded-lg shadow-sm overflow-hidden"
               >
-                <div className="flex items-center justify-center h-full text-gray-400 font-medium">
-                  MAPA INTERACTIVO
-                </div>
+                <SectionMap />
               </motion.div>
             )}
           </AnimatePresence>

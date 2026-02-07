@@ -10,11 +10,11 @@ import { useSelectionStore } from "@/store/selectionStore";
 
 const TableProject = ({ openSummary }: { openSummary: boolean }) => {
   const { pageProjects: data } = useProjectStore();
-  const { selectedProjectIds, toggleSelection } = useSelectionStore();
+  const { selectedProjects, toggleSelection } = useSelectionStore();
   const errorImage = "https://cdn-icons-png.flaticon.com/512/9672/9672290.png";
 
   return (
-    <div className="bg-white rounded-lg shadow-sm flex flex-col h-full">
+    <div className="bg-white rounded-lg shadow-lg flex flex-col">
       <div className="overflow-x-auto overflow-y-hidden">
         <table className="w-full text-left border-collapse lg:min-w-full">
           <thead>
@@ -32,12 +32,14 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
             {data.map((item) => {
               const plan = getProjectPlan(item.projectPlanData.plan);
               const status = getProjectStatus(item.status);
-              const isSelected = selectedProjectIds.includes(item._id);
+              const isSelected = selectedProjects.find(
+                (p) => p._id === item._id,
+              );
 
               return (
                 <tr
                   key={item._id}
-                  onClick={() => toggleSelection(item._id)}
+                  onClick={() => toggleSelection(item)}
                   className={`hover:bg-gray-200 cursor-pointer transition-colors group border-l-3 border-b-0 ${
                     isSelected
                       ? "border-orange-500 bg-orange-50/30"
@@ -120,7 +122,7 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
         </table>
       </div>
 
-      <div className="mt-auto border-t border-gray-100">
+      <div className="mt-auto">
         <Pagination />
       </div>
     </div>
