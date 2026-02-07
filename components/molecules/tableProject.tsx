@@ -18,9 +18,9 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
           <thead>
             <tr className="text-xs tracking-wider border-b border-gray-100">
               <th className="px-3 py-3 font-medium">Proyecto</th>
-              <th className={`px-3 py-3 font-medium `}>Plan</th>
-              <th className={`px-3 py-3 font-medium `}>Estado</th>
-              <th className="px-3 py-3 font-medium ">Equipo</th>
+              <th className={`px-3 py-3 font-medium`}>Plan</th>
+              <th className={`px-3 py-3 font-medium`}>Estado</th>
+              <th className="px-3 py-3 font-medium">Equipo</th>
               <th className="px-3 py-3 font-medium text-right md:text-left">
                 Items por vencer
               </th>
@@ -39,6 +39,9 @@ const TableProject = ({ openSummary }: { openSummary: boolean }) => {
                   <td className="px-3 py-4">
                     <div className="flex items-center gap-3">
                       <div className="shrink-0 w-10 h-10 bg-gray-100 rounded flex items-center justify-center overflow-hidden">
+                        {/* Aqui esto usando img de html en vez de Image de next/image porque hay imagenes con url
+                          inválidas como "xxx" y usar un useEffect o hacer una SafeImage pienso que no es muy optimo en
+                          este caso */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={item.img}

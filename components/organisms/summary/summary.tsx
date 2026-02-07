@@ -6,7 +6,7 @@ import {
   RotateCcw,
   Clock,
 } from "lucide-react";
-import ProgressCard from "@/components/atoms/progress_card";
+import ProgressCard from "@/components/atoms/progressCard";
 import Hexagon from "@/components/atoms/hexagon";
 import DataTable from "@/components/molecules/dataTable/dataTable";
 import { ProjectDataType } from "@/types/datatype";
@@ -37,9 +37,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
       render: (row: ProjectDataType) => (
         <>
           <span className="font-bold text-gray-800">{row.name}</span>
-          <span className="text-gray-500 truncate">
-            {row.desc}
-          </span>
+          <span className="text-gray-500 truncate">{row.desc}</span>
         </>
       ),
     },
@@ -70,9 +68,7 @@ const Summary = ({ onCloseSummary }: SummaryProps) => {
       render: (row: ProjectDataType) => (
         <>
           <span className="font-bold text-gray-800">{row.name}</span>
-          <span className="text-gray-500 truncate">
-            {row.desc}
-          </span>
+          <span className="text-gray-500 truncate">{row.desc}</span>
         </>
       ),
     },
