@@ -1,4 +1,4 @@
-// Ya tenia un archivo de auth con next-auth previamente desarrollado
+// Ya tenia un archivo de auth con next-auth previamente desarrollad
 
 import prisma from "@/lib/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";

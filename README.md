@@ -29,17 +29,23 @@ Esta prueba técnica es una evaluación de habilidades técnicas de frontend. El
 
 ## Tecnologías utilizadas
 
-- Next.js
-- React.js
-- Mapbox GL JS
-- JSON
-- CSS modules
-- Tailwind CSS
-- TypeScript
-- Zustand
-- Prisma
-- Postgres
-- react-hook-form
+### **Core Stack**
+* **Next.js (App Router)** - Framework de React para producción con renderizado híbrido.
+* **TypeScript** - Desarrollo robusto con tipado estático.
+* **PostgreSQL** - Base de datos relacional para la persistencia de datos.
+* **Prisma ORM** - Modelado de datos y comunicación eficiente con la base de datos.
+
+### **Estado y Formularios**
+* **Zustand** - Gestión de estado global ligera y escalable.
+* **React Hook Form** - Manejo optimizado de formularios y validaciones de cliente.
+
+### **Interfaz y Visualización**
+* **Mapbox GL JS** - Integración de mapas interactivos y manejo de datos geoespaciales.
+* **Tailwind CSS** - Estilizado basado en utilidades para un diseño moderno y responsivo.
+* **CSS Modules** - Estilos encapsulados para componentes específicos.
+
+### **Infraestructura**
+* **Vercel** - Plataforma de despliegue y hosting de la base de datos (Vercel Postgres).
 
 ## Referencias
 

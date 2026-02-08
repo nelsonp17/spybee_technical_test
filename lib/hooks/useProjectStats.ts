@@ -1,10 +1,10 @@
-import { ProjectData, User } from "@/types/project";
 import {
   getGlobalMetrics,
   getUpcomingDeadlines,
   getUpcomingEvents,
 } from "@/lib/utils/projectUtils";
 import { useMemo } from "react";
+import { ProjectData, User } from "../types/server/project";
 
 // hook para obtener las iniciales de los usuarios
 export const useUserInitials = (users: User[] = [], limit: number = 2) => {

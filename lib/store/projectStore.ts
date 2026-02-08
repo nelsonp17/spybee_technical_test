@@ -1,6 +1,6 @@
-import { ProjectData } from "@/types/project";
-import { SortProjects } from "@/types/ui/sortProjects";
 import { create } from "zustand";
+import { ProjectData } from "../types/server/project";
+import { SortProjects } from "../types/client/sortProjects";
 
 interface ProjectState {
   allProjects: ProjectData[]; // data original
