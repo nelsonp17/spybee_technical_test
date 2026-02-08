@@ -6,8 +6,9 @@
 1. Clonar el repositorio.
 2. Instalar dependencias: `npm install` o `yarn install`.
 3. Configurar variables de entorno (tomar como referencia el archivo `.env.example`).
-4. Correr en desarrollo: `npm run dev`
-5. Correr en producción: `npm run build` y `npm start`
+4. Es requerido tener una base de datos PostgreSQL configurada y accesible.
+5. Correr en desarrollo: `npm run dev`
+6. Correr en producción: `npm run build` y `npm start`
 
 ## Descripción
 
@@ -80,7 +81,7 @@ Para cargar las imagenes de la data json utilice la etiqueta `<img />` en vez de
 - Solución del tipico error bigInt con BigInt.prototype.toJSON()
 - Se necesita configurar el archivo .env con las variables de entorno necesarias para la conexión a la base de datos y el servidor y las secrets.
 
-En vista de que he trabajado en varios proyectos nextjs agregar funcionalidades como manejo de errores y validaciones de formularios, rutas protegidas con Proxy, manejo de Prisma y Postgres, y pagina de error 404. Fueron sencillos ya que suelo trabajar a menudo en proyectos similares.
+La implementación de las capas de seguridad (rutas protegidas), manejo de errores (404) y persistencia con Prisma fue empleada con recursos preexistentes de mi flujo de trabajo habitual para el manejo de formularios, errores y configuración de base de datos. Esta reutilización de código garantiza estabilidad y rapidez en el despliegue de funcionalidades transversales.
 
 ## Estructura de carpetas
 

@@ -20,10 +20,10 @@ const HeaderSection = ({ title, count }: HeaderProps) => {
   };
 
   return (
-    <div className="flex flex-col xl:flex-row xl:items-center justify-between mb-8 gap-4 px-1 text-gray-800">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4 px-1 text-gray-800">
       {/* Encabezado: Título y Contador */}
       <div className="flex items-center gap-4 text-[var(--color-dark-letter-1)]">
-        <h1 className="text-2xl md:text-3xl font-bold whitespace-nowrap">
+        <h1 className="text-2xl lg:text-2xl xl:text-3xl md:text-3xl font-bold whitespace-nowrap">
           {title}
         </h1>
         <span className="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
@@ -34,13 +34,13 @@ const HeaderSection = ({ title, count }: HeaderProps) => {
       {/* Controles: Filtros, Buscador y Acción */}
       <div className="flex flex-wrap items-center gap-3 md:gap-4">
         {/* Agrupamos filtros para que mantengan coherencia visual en móviles */}
-        <div className="flex justify-end gap-2 grow sm:grow-0">
+        <div className="flex justify-end gap-2 md:gap-0 grow sm:grow-0">
           <ButtonSortDropdown />
           <FilterGroupButton />
         </div>
 
         {/* Buscador: Crece para llenar espacio en tablets/móviles */}
-        <div className="w-full sm:w-64 md:w-80 lg:w-96 grow">
+        <div className="w-full sm:w-64 md:w-80 lg:w-56 xl:w-96 grow md:grow-0">
           <Input
             icon={Search}
             placeholder="Buscar"
