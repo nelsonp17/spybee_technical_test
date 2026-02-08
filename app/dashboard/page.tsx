@@ -1,9 +1,7 @@
-export const dynamic = "force-dynamic";
-
-import DashboardContent from "@/components/organisms/content/dashboardContent";
-import HeaderSection from "@/components/molecules/header/headerSection";
+import DashboardContent from "@/lib/components/organisms/content/dashboardContent";
+import HeaderSection from "@/lib/components/molecules/header/headerSection";
 import { Suspense } from "react";
-import { getProjects } from "@/services/server/projects";
+import { getProjects } from "@/lib/services/server/projects";
 
 export default async function Dashboard() {
   const [projectsData] = await Promise.all([getProjects()]);

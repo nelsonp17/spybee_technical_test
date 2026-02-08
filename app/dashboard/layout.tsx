@@ -1,4 +1,4 @@
-import Navbar from "@/components/molecules/navbar/navbar";
+import Navbar from "@/lib/components/molecules/navbar/navbar";
 
 export default function DashboardLayout({
   children,
