@@ -39,9 +39,6 @@ export const proxy = withAuth(
         return !!token;
       },
     },
-    pages: {
-      signIn: "/auth/login",
-    },
   },
 );
 

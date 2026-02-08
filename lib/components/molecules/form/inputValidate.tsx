@@ -17,7 +17,7 @@ export const InputValidate = forwardRef<HTMLInputElement, Props>(
         <input
           ref={ref}
           {...props}
-          className={`mt-1 block w-full border rounded-md px-3 py-2 outline-none transition-all ${
+          className={`text-gray-700 mt-1 block w-full border rounded-md px-3 py-2 outline-none transition-all ${
             error
               ? "border-red-500 focus:ring-red-200"
               : "border-gray-300 focus:ring-blue-200 focus:border-blue-500"
