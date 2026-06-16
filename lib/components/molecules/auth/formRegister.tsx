@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { InputValidate } from "../form/inputValidate";
 import { registerValidations } from "@/lib/utils/validations/form";
@@ -37,9 +38,14 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-sm border border-gray-100">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <h2 className="text-2xl font-bold text-gray-800 text-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-md mx-auto mt-8 p-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/20"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <h2 className="text-2xl font-bold text-white text-center tracking-wide">
           Crear una cuenta
         </h2>
 
@@ -86,16 +92,16 @@ export default function RegisterForm() {
           {loading ? "Registrando..." : "Registrarse"}
         </Button>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-gray-300 mt-4">
           ¿Ya tienes una cuenta?{" "}
           <Link
             href={"/auth/login"}
-            className="text-[var(--color-light-blue)] hover:underline font-semibold"
+            className="text-white hover:text-purple-300 hover:underline font-semibold transition-colors"
           >
             Inicia sesión
           </Link>
         </p>
       </form>
-    </div>
+    </motion.div>
   );
 }

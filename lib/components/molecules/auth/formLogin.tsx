@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { loginValidations } from "@/lib/utils/validations/form";
 import Button from "../../atoms/buttons/button";
@@ -14,7 +15,6 @@ import { loginUser } from "@/lib/services/client/auth";
 export default function LoginForm() {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   // Capturamos el mensaje de éxito si viene del registro
@@ -33,8 +33,7 @@ export default function LoginForm() {
     const result = await loginUser(data);
 
     if (result.success) {
-      router.push("/dashboard");
-      router.refresh();
+      window.location.href = "/dashboard";
     } else {
       setError(result.error || "Error al entrar");
       setLoading(false);
@@ -42,9 +41,14 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-sm border border-gray-100">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <h2 className="text-2xl font-bold text-gray-800 text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-md mx-auto mt-8 p-8 bg-white/10 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border border-white/20"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <h2 className="text-2xl font-bold text-white text-center tracking-wide">
           Iniciar sesión
         </h2>
 
@@ -83,16 +87,16 @@ export default function LoginForm() {
           {loading ? "Entrando..." : "Entrar"}
         </Button>
 
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-gray-300 mt-4">
           ¿No tienes una cuenta?{" "}
           <Link
             href={"/auth/register"}
-            className="text-[var(--color-light-blue)] hover:underline font-semibold"
+            className="text-white hover:text-purple-300 hover:underline font-semibold transition-colors"
           >
             Regístrate
           </Link>
         </p>
       </form>
-    </div>
+    </motion.div>
   );
 }

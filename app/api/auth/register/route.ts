@@ -12,8 +12,9 @@ export const POST = async (req: Request) => {
     }
 
     // Verificamos que el email no exista
+    const emailLower = email.toLowerCase();
     const existingEmail = await prisma.user.findUnique({
-      where: { email },
+      where: { email: emailLower },
     });
 
     if (existingEmail) {
@@ -36,7 +37,7 @@ export const POST = async (req: Request) => {
 
     // Creamos el nuevo usuario
     const newUser = await prisma.user.create({
-      data: { username, email, password: hashedPassword },
+      data: { username, email: emailLower, password: hashedPassword },
     });
     const { password: _, ...user } = newUser;
 

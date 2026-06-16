@@ -10,21 +10,21 @@ export const InputValidate = forwardRef<HTMLInputElement, Props>(
   ({ label, error, className, ...props }, ref) => {
     return (
       <div className="w-full">
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-white/90 mb-1">
           {label}
         </label>
 
         <input
           ref={ref}
           {...props}
-          className={`text-gray-700 mt-1 block w-full border rounded-md px-3 py-2 outline-none transition-all ${
+          className={`w-full bg-white/5 border text-white placeholder-white/40 rounded-xl px-4 py-3 outline-none transition-all duration-300 backdrop-blur-sm ${
             error
-              ? "border-red-500 focus:ring-red-200"
-              : "border-gray-300 focus:ring-blue-200 focus:border-blue-500"
+              ? "border-red-500 focus:ring-2 focus:ring-red-500/30"
+              : "border-white/20 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/30 hover:bg-white/10"
           } ${className}`}
         />
 
-        {error && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
+        {error && <p className="text-red-400 text-xs mt-1.5 ml-1">{error.message}</p>}
       </div>
     );
   },

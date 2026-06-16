@@ -21,8 +21,9 @@ const authOptions: NextAuthOptions = {
         if (!credentials) throw new Error("Credenciales inválidas");
 
         // Verificamos que el email no exista
+        const emailLower = credentials.email.toLowerCase();
         const existingUser = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { email: emailLower },
         });
 
         if (!existingUser) throw new Error("Usuario o contraseña inválidas");
@@ -51,6 +52,7 @@ const authOptions: NextAuthOptions = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user }) {
       // Cuando el usuario inicia sesión, pasamos datos al token
